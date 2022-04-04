@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:smart="http://smartengine.org/schema/process" id="smartPropertiesTest" version="1.0.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             targetNamespace="smart">
+    <process id="Process_1" isExecutable="false">
+        <startEvent id="StartEvent_1"/>
+        <serviceTask id="ServiceTask_056ab4g" name="Right"
+                     smart:class="com.clare.bkcashier.node.CreateCashierOrderNode">
+        </serviceTask>
+        <serviceTask id="ServiceTask_1le00ez" name="Wrong"
+                     smart:class="com.clare.bkcashier.node.SaveCashierOrderNode">
+        </serviceTask>
+        <endEvent id="EndEvent_1uof7f8"/>
+        <sequenceFlow id="SequenceFlow_1mxsbfh" sourceRef="StartEvent_1" targetRef="ServiceTask_056ab4g"/>
+        <sequenceFlow id="SequenceFlow_0nrw22m" sourceRef="ServiceTask_056ab4g" targetRef="ServiceTask_1le00ez"/>
+        <sequenceFlow id="SequenceFlow_0ve344a" sourceRef="ServiceTask_1le00ez" targetRef="EndEvent_1uof7f8"/>
+    </process>
+
+</definitions>
