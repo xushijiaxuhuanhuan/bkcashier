@@ -13,10 +13,10 @@ import com.alibaba.smart.framework.engine.service.query.ExecutionQueryService;
 import com.alibaba.smart.framework.engine.service.query.ProcessQueryService;
 import com.alibaba.smart.framework.engine.service.query.RepositoryQueryService;
 
+import java.util.Map;
 
 
-
-public class AbstractbkcashierService {
+public abstract class AbstractbkcashierService {
 
     public AbstractbkcashierService(){}
 
@@ -66,7 +66,5 @@ public class AbstractbkcashierService {
         simpleAnnotationScanner.clear();
     }
 
-    protected void execute() {
-    }
-
+    public abstract void execute(Map<String, Object> view);
 }

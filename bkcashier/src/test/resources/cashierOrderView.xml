@@ -1,0 +1,17 @@
+<cashierOrderView>
+    <amount>
+        <amt>18.0</amt>
+        <currency>RENMINBI</currency>
+    </amount>
+    <cashierType>
+        STANDARD
+    </cashierType>
+    <payeeFundDetails>
+        <id>4</id>
+        <assetType>CHANGE</assetType>
+        <assetShowName>CHANGE</assetShowName>
+    </payeeFundDetails>
+    <description>
+        pay
+    </description>
+</cashierOrderView>

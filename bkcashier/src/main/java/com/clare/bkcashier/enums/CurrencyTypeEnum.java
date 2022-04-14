@@ -21,7 +21,25 @@ public enum CurrencyTypeEnum implements BaseEnum<String, String> {
         this.desc = desc;
     }
 
+    CurrencyTypeEnum(String value){
+        switch (value){
+            case "cny":{
+                this.value = value;
+                this.desc = "人民币";
+                break;
+            }
+            case "dollar":{
+                this.value = value;
+                this.desc = "美元";
+                break;
+            }
+        }
+        if("cny".equals(value)){
+            this.value = "cny";
+            this.desc = "人民币";
+        }
 
+    }
 
     @Override
     public String desc() {

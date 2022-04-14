@@ -2,6 +2,24 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clare.bkcashier.repository.dao.CashierOrderDAO">
+    <resultMap id="cashierOrderResultMap" type="com.clare.bkcashier.repository.sqldo.CashierOrderDO">
+        <result typeHandler="com.clare.bkcashier.repository.handler.AmountHandler" column="amount" javaType="BigDecimal"
+                jdbcType="DECIMAL"/>
+        <result typeHandler="org.apache.ibatis.type.StringTypeHandler" column="currency" javaType="String"
+                jdbcType="VARCHAR"/>
+        <result typeHandler="org.apache.ibatis.type.StringTypeHandler" column="cashierType" javaType="String"
+                jdbcType="VARCHAR"/>
+        <result typeHandler="org.apache.ibatis.type.DateTypeHandler" column="bizPayDate" javaType="Date"
+                jdbcType="TIMESTAMP"/>
+        <result typeHandler="org.apache.ibatis.type.StringTypeHandler" column="description" javaType="String"
+                jdbcType="VARCHAR"/>
+        <result typeHandler="org.apache.ibatis.type.StringTypeHandler" column="shardingId" javaType="String"
+                jdbcType="VARCHAR"/>
+        <result typeHandler="com.clare.bkcashier.repository.handler.PayeeFundDetailHandler" column="payeeFundDetails" javaType="com.clare.bkcashier.eneity.CashierAssetDTO"
+                jdbcType="VARCHAR"
+                property="payeeFundDetails"/>
+    </resultMap>
+
     <sql id="baseColumn">
         id, gmt_create, gmt_modified,
         cashierOrderId,
@@ -14,7 +32,7 @@
         payeeFundDetails
     </sql>
 
-    <insert id="insertCashierOrder" parameterType="com.clare.bkcashier.eneity.CashierOrder">
+    <insert id="insertCashierOrder" parameterType="com.clare.bkcashier.eneity.order.CashierOrder">
         INSERT INTO cashierorder (id, gmt_create, gmt_modified,cashierOrderId,amount,currency,cashierType
         ,bizPayDate
         ,description
@@ -31,8 +49,19 @@
         #{bizPayDate,javaType=Date,jdbcType=TIMESTAMP,typeHandler=org.apache.ibatis.type.DateTypeHandler},
         #{description,javaType=String,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.StringTypeHandler},
         #{sharding,javaType=String,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.StringTypeHandler},
-        #{payeeFundDetails,javaType=com.clare.bkcashier.eneity.CashierAsset,jdbcType=VARCHAR,typeHandler=com.clare.bkcashier.repository.handler.PayeeFundDetailsHandler}
+        #{payeeFundDetails,javaType=com.clare.bkcashier.eneity.CashierAssetDTO,jdbcType=VARCHAR,typeHandler=com.clare.bkcashier.repository.handler.PayeeFundDetailsHandler}
         )
     </insert>
+
+    <select id="selectCashierOrder" resultMap="cashierOrderResultMap">
+        SELECT cashierOrderId
+        ,amount
+        ,currency
+        ,cashierType
+        ,bizPayDate
+        ,description
+        ,sharding
+        ,payeeFundDetails From cashierorder WHERE cashierOrderId = #{cashierOrderId}
+    </select>
 
 </mapper>

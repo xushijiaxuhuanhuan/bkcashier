@@ -13,3 +13,6 @@ spring:
     password: xj@181860118
     serverTimezone: UTC
     driver-class-name: com.mysql.jdbc.Driver
+
+  thymeleaf:
+    check-template-location=false:

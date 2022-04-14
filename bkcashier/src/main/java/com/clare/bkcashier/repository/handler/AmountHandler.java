@@ -1,6 +1,6 @@
 package com.clare.bkcashier.repository.handler;
 
-import com.clare.bkcashier.eneity.CashierMoney;
+import com.clare.bkcashier.eneity.util.CashierMoney;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 
@@ -21,7 +21,7 @@ public class AmountHandler implements TypeHandler {
     @Override
     public Object getResult(ResultSet resultSet, String s) throws SQLException {
         BigDecimal amount = resultSet.getBigDecimal(s);
-        return null;
+        return amount;
     }
 
     @Override

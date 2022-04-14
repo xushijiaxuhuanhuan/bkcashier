@@ -1,5 +1,7 @@
 package com.clare.bkcashier.eneity;
 
+import com.clare.bkcashier.eneity.order.CashierOrder;
+import com.clare.bkcashier.view.CashierOrderView;
 import lombok.Data;
 
 import java.util.Map;
@@ -7,15 +9,42 @@ import java.util.Map;
 @Data
 public class Context {
     /*
-    SessionId， 保存id和
+    ShardingId， 保存id和
      */
-    private String SessionId;
+    private String ShardingId;
 
     private CashierOrder cashierOrder;
 
-    Map<String, Object> maps;
+    private CashierOrderView cashierOrderView;
 
-    public Context(String sessionId) {
-        SessionId = sessionId;
+    public Map<String, Object> applicationContext;
+
+
+    public Context(String shardingId) {
+        ShardingId = shardingId;
+    }
+
+    public Context(){}
+
+    public void setShardingId(String shardingId) {
+        ShardingId = shardingId;
+    }    public void setCashierOrder(CashierOrder cashierOrder) {
+        this.cashierOrder = cashierOrder;
+    }
+
+    public void setCashierOrderView(CashierOrderView cashierOrderView) {
+        this.cashierOrderView = cashierOrderView;
+    }
+
+    public String getShardingId() {
+        return ShardingId;
+    }
+
+    public CashierOrder getCashierOrder() {
+        return cashierOrder;
+    }
+
+    public CashierOrderView getCashierOrderView() {
+        return cashierOrderView;
     }
 }
